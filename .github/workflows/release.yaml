@@ -10,7 +10,7 @@ jobs:
   # CPU generation step
   generate-windows-cpu:
     environment: release
-    runs-on: windows
+    runs-on: windows-latest
     env:
       KEY_CONTAINER: ${{ vars.KEY_CONTAINER }}
     steps:
@@ -67,7 +67,7 @@ jobs:
   # Output of this build is aggregated into the final x86 build
   # for a unified windows installer
   windows-arm64:
-    runs-on: windows-arm64
+    runs-on: windows-latest-arm64
     environment: release
     env:
       KEY_CONTAINER: ${{ vars.KEY_CONTAINER }}
@@ -193,7 +193,7 @@ jobs:
   # Import the prior generation steps plus the full arm64 build, and build the final windows assets
   build-windows:
     environment: release
-    runs-on: windows
+    runs-on: windows-latest
     needs:
       - generate-windows-cpu
       - windows-arm64
@@ -278,7 +278,7 @@ jobs:
   release:
     needs:
       - build-windows
-    runs-on: linux
+    runs-on: linux-latest
     environment: release
     permissions:
       contents: write
