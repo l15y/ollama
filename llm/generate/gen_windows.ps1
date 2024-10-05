@@ -263,7 +263,7 @@ function build_cpu_avx() {
 function build_cpu_avx2() {
     if ((-not "${env:OLLAMA_SKIP_CPU_GENERATE}" ) -and ((-not "${env:OLLAMA_CPU_TARGET}") -or ("${env:OLLAMA_CPU_TARGET}" -eq "cpu_avx2"))) {
         init_vars
-        $script:cmakeDefs = $script:commonCpuDefs + @("-A", "x64", "-DGGML_AVX=on", "-DGGML_AVX2=on", "-DGGML_AVX512=off", "-DGGML_FMA=on", "-DGGML_F16C=on") + $script:cmakeDefs
+        $script:cmakeDefs = $script:commonCpuDefs + @("-A", "x64", "-DGGML_AVX=on", "-DGGML_AVX2=off", "-DGGML_AVX512=on", "-DGGML_FMA=on", "-DGGML_F16C=on") + $script:cmakeDefs
         $script:buildDir="../build/windows/${script:ARCH}/cpu_avx2"
         $script:distDir="$script:DIST_BASE\cpu_avx2"
         write-host "Building AVX2 CPU"
